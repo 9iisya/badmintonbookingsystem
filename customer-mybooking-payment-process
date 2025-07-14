@@ -1,0 +1,23 @@
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header("Location: customer-mybooking-payment.php");
+    exit();
+}
+
+// Save form data into session
+$_SESSION['receipt'] = [
+    'name' => $_POST['fullname'],
+    'email' => $_POST['email'],
+    'amount' => 30.00, // fixed amount
+    'court' => 'Court A',
+    'date' => '2025-05-12',
+    'time' => '11:00 AM - 12:00 PM',
+    'payment_method' => 'Credit Card'
+];
+
+// Redirect to receipt page
+header("Location: customer-mybooking-receipt.php");
+exit();
+?>
